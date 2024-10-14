@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayush Parekh's Personal Portfolio</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #666;
+        }
+        nav {
+            background-color: #333;
+            padding: 10px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+        .sections {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 600px;
+        }
+        .bubble {
+            background-color: #fff;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .bubble:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+        .bubble h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 1em;
+            max-width: 80%;
+        }
+        #about, #contact {
+            background-color: white;
+            padding: 40px;
+            margin-top: 50px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .detailed-section {
+            display: none;
+            background-color: white;
+            padding: 40px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-width: 800px;
+            width: 100%;
+        }
+        .project {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        .project img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            margin-right: 20px;
+            border-radius: 5px;
+        }
+        .project-info {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#robotics">Robotics</a></li>
+            <li><a href="#commissioned">Commissioned</a></li>
+            <li><a href="#personal">Personal</a></li>
+            <li><a href="#work">Experience</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+   
+
+    <div class="container">
+        <header id="home">
+            <h1>Ayush Parekh</h1>
+            <p class="subtitle">Robotics Enthusiast | Computer Science Student @ UWO | Vintage Tech fanatic</p>
+        </header>
+
+        <section id="about">
+            <h2><center>About Me</center></h2>
+            <p>Hello, I'm Ayush, a passionate computer science student at Western University. I have a particular interest in robotics. I enjoy building robots by hand and programming them using Arduinos and Raspberry Pi's. I love to work on projects that will automate tasks and help those with mental and phyiscal impairments. I am adept at programming with C++, Python, and Javascript, I able to work with HTML, and CSS too.</p>
+        </section>
+
+        <div class="sections">
+            <section id="robotics" class="section">
+                <div class="bubble" onclick="toggleRoboticsSection()">
+                    <h2>Robotics</h2>
+                </div>
+                <p class="description">The field of robotics is vast and unique. In tandem with programming, robots can be used as tools that will facilitate the future of mankind.</p>
+                <div id="roboticsDetailed" class="detailed-section">
+                    <h2>Robotics</h2>
+                    <div class="project">
+                        <img src="img1.PNG" alt="robot pic">
+                        <div class="project-info">
+                            <h3>CNE FIRST Robotics Off Season Event 4th place finish</h3>
+                            <p>At this event, my team of 3 and I took on the task of creating and designing a robot to perform the challenges set by FIRST Robotics. Our team had joined late into the process, though, we were able to design and program our robot in a little under a week. With the aid of FIRST Robotics mentors and Inverse Paradox we were able to secure a fourth place finish.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img2.PNG" alt="IMG of claw robot">
+                        <div class="project-info">
+                            <h3>TMR3M0</h3>
+                            <p>I had taken the TMR3M0 Robotics course and finished with a 94%, in this course I was able to create various robots. My favourite Robot was a claw robot I had created with the purpose of picking up cones to place on a pole.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img3.jpg" alt="image of API clock">
+                        <div class="project-info">
+                            <h3>Personal Robotics Projects</h3>
+                            <p>In my free time I enjoy working with Raspberry Pi's to create robots that automate daily tasks. My favourite creation so far is a clock that uses an API to gather weather data and the time data of a given location.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="commissioned" class="section">
+                <div class="bubble" onclick="toggleCommissionedSection()">
+                    <h2>Commissioned Projects</h2>
+                </div>
+                <p class="description">Projects commissioned by clients.</p>
+                <div id="CommissionedDetailed" class="detailed-section">
+                    <h2>Commissioned Work</h2>
+                    <div class="project">
+                        <img src="calc.png" alt="ss of calc">
+                        <div class="project-info">
+                            <h3>The Boring Calculator</h3>
+                            <p>This project was created to be used as a chrome extension calculator for homework that met the expectations set by the university of my client in their Calculus program. It was made to be used to do homework as my client did not wish to constantly carry a caculator around but wished to have experience with a non-scientific calculator to prepare for tests.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img5.avif" alt="Caution Tape">
+                        <div class="project-info">
+                            <h3>COMING SOON</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img5.avif" alt="Caution Tape">
+                        <div class="project-info">
+                            <h3>COMING SOON</h3>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="personal" class="section">
+                <div class="bubble" onclick ="togglepersonalSection()">
+                    <h2>Personal</h2>
+                </div>
+                <p class="description">In my personal time, I like to work on various different projects and hobbies both in and out of technology.</p>
+                <div id="personalDetailed" class="detailed-section">
+                    <h2>Personal Projects / Hobbies</h2>
+                    <div class="project">
+                        <img src="img6.PNG" alt="vintage tech">
+                        <div class="project-info">
+                            <h3>Vintage Technology Repair</h3>
+                            <p>My father has always been interested in vintage technology, because of this I gradually began to become interested too. I have now begun to repair any vintage technology possible, from MP3 players to vintage digital cameras and radios.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img7.PNG" alt="Martial Arts">
+                        <div class="project-info">
+                            <h3>Wrestling</h3>
+                            <p>In highschool I enjoyed wrestling. It was both a phyiscally and mentally demanding sport. It required an individual to think on the spot while also being athletic enough to carry out whatever plans were previously conceived.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img8.jpg" alt="criket essay">
+                        <div class="project-info">
+                            <h3>Literature</h3>
+                            <p>Literature has always held a deep place in my heart. In grade 11 I recieved an Honourable Mention Distinction in from OSCA for an essay pertaining to Cricket and The Crown. Currently, I continue to write poetry and essays regarding my passions when possible.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="work" class="section">
+                <div class="bubble" onclick="toggleworkSection()">
+                    <h2>Experience</h2>
+                </div>
+                <p class="description">Work Experience</p>
+                <div id="workDetailed" class="detailed-section">
+                    <h2>Work / Volunteer Experience</h2>
+                    <div class="project">
+                        <img src="img9.avif" alt="temple">
+                        <div class="project-info">
+                            <h3>Mississauga’s Ram Mandir (2022 - 2024)</h3>
+                            <p>Tutoring (french, english, mathematics, and science). Cooking and serving food/cleaning/event setup/general technology assistance.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="calc.png" alt="calc">
+                        <div class="project-info">
+                            <h3>Freelance Developer (June 2024 - Present)</h3>
+                            <p>I began to do freelance development when I was commissioned to make a calculator program for a client. I am still in the early stages of this and there is more to come.</p>
+                        </div>
+                    </div>
+                    <div class="project">
+                        <img src="img10.jpg" alt="sauga">
+                        <div class="project-info">
+                            <h3>City Of Mississauga Volunteer (2022-2022)</h3>
+                            <p>In 2022 I had volunteered for the city of Mississauga as a VIP volunteer on two occasions (Canada day & Reconcilliation Day), where I guided guests to different areas and assisted with refreshments along with backstage support.</p>
+                        </div>
+                    </div>
+                </div>      
+            </section>
+        </div>
+
+
+
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <p>Email: ayushparekh2022@gmail.com</p>
+            <p><a href ="https://www.linkedin.com/in/ayush-parekh-314b932b8/">My Linkedin</a></p>
+            <p><a href ="https://github.com/ParAyush">My Github</a></p>
+        </section>
+    </div>
+
+    <script>
+        // scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // commissioned section
+        function toggleCommissionedSection() {
+            var CommissionedSection = document.getElementById('CommissionedDetailed');
+            if (CommissionedSection.style.display === 'none' || CommissionedSection.style.display === '') {
+                CommissionedSection.style.display = 'block';
+            } else {
+                CommissionedSection.style.display = 'none';
+            }
+        }
+        //  Robotics section
+        function toggleRoboticsSection() {
+            var roboticsSection = document.getElementById('roboticsDetailed');
+            if (roboticsSection.style.display === 'none' || roboticsSection.style.display === '') {
+                roboticsSection.style.display = 'block';
+            } else {
+                roboticsSection.style.display = 'none';
+            }
+        }
+
+        // Personal section
+        function togglepersonalSection() {
+            var personalSection = document.getElementById('personalDetailed');
+            if (personalSection.style.display === 'none' || personalSection.style.display === '') {
+                personalSection.style.display = 'block';
+            } else {
+                personalSection.style.display = 'none';
+            }
+        }
+
+        // Toggle Work section
+        function toggleworkSection() {
+            var workSection = document.getElementById('workDetailed');
+            if (workSection.style.display === 'none' || workSection.style.display === '') {
+                workSection.style.display = 'block';
+            } else {
+                workSection.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>
