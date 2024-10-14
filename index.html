@@ -9,8 +9,8 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #121212;
+            color: #e0e0e0;
         }
         .container {
             max-width: 1200px;
@@ -24,13 +24,14 @@
         h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
+            color: #ffffff;
         }
         .subtitle {
             font-size: 1.2em;
-            color: #666;
+            color: #b0b0b0;
         }
         nav {
-            background-color: #333;
+            background-color: #1e1e1e;
             padding: 10px 0;
             position: sticky;
             top: 0;
@@ -47,7 +48,7 @@
             margin: 0 15px;
         }
         nav ul li a {
-            color: white;
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 1.1em;
         }
@@ -66,8 +67,8 @@
             max-width: 600px;
         }
         .bubble {
-            background-color: #fff;
-            border-radius: 50%;
+            background-color: #1e1e1e;
+            border-radius: 70%;
             width: 200px;
             height: 200px;
             display: flex;
@@ -75,37 +76,39 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.6s ease;
+            box-shadow: 0 4px 60px rgba(255, 255, 255, 0.9);
             margin-bottom: 20px;
             cursor: pointer;
         }
         .bubble:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 70px rgba(255, 255, 255, 0.4);
         }
         .bubble h2 {
             font-size: 1.5em;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
+            color: #ffffff;
         }
         .description {
             font-size: 1em;
             max-width: 80%;
+            color: #ffffff;
         }
         #about, #contact {
-            background-color: white;
+            background-color: #1e1e1e;
             padding: 40px;
             margin-top: 50px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(255,255,255,0.1);
         }
         .detailed-section {
             display: none;
-            background-color: white;
+            background-color: #1e1e1e;
             padding: 40px;
             margin-top: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px rgba(255,255,255,0.1);
             max-width: 800px;
             width: 100%;
         }
@@ -123,6 +126,9 @@
         }
         .project-info {
             text-align: left;
+        }
+        a {
+            color: #4da6ff;
         }
     </style>
 </head>
@@ -144,12 +150,12 @@
     <div class="container">
         <header id="home">
             <h1>Ayush Parekh</h1>
-            <p class="subtitle">Robotics Enthusiast | Computer Science Student @ UWO | Vintage Tech Fanatic</p>
+            <p class="subtitle">Robotics Enthusiast | Computer Science Student @ UWO | Vintage Tech fanatic</p>
         </header>
 
         <section id="about">
             <h2><center>About Me</center></h2>
-            <p>Hello, I'm Ayush, a passionate computer science student at Western University. I have a particular interest in robotics. I enjoy building robots by hand and programming them using Arduinos and Raspberry Pi's. I love to work on projects that will automate tasks and help those with mental and physical impairments. I am adept at programming with C++, Python, and Javascript, I'm able to work with HTML, and CSS too.</p>
+            <p>Hello, I'm Ayush, a passionate computer science student at Western University. I have a particular interest in robotics. I enjoy building robots by hand and programming them using Arduinos and Raspberry Pi's. I love to work on projects that will automate tasks and help those with mental and phyiscal impairments. I am adept at programming with C++, Python, and Javascript, I able to work with HTML, and CSS too.</p>
         </section>
 
         <div class="sections">
@@ -161,14 +167,14 @@
                 <div id="roboticsDetailed" class="detailed-section">
                     <h2>Robotics</h2>
                     <div class="project">
-                        <img src="img2.PNG" alt="robot pic">
+                        <img src="img1.PNG" alt="robot pic">
                         <div class="project-info">
                             <h3>CNE FIRST Robotics Off Season Event 4th place finish</h3>
-                            <p>At this event, my team of 15 and I took on the task of creating and designing a robot to perform the challenges set by FIRST Robotics. Our team had joined late into the process, though, we were able to design and program our robot in a little under a week. With the aid of FIRST Robotics mentors and Inverse Paradox we were able to secure a fourth place finish.</p>
+                            <p>At this event, my team of 3 and I took on the task of creating and designing a robot to perform the challenges set by FIRST Robotics. Our team had joined late into the process, though, we were able to design and program our robot in a little under a week. With the aid of FIRST Robotics mentors and Inverse Paradox we were able to secure a fourth place finish.</p>
                         </div>
                     </div>
                     <div class="project">
-                        <img src="img1.PNG" alt="IMG of claw robot">
+                        <img src="img2.PNG" alt="IMG of claw robot">
                         <div class="project-info">
                             <h3>TMR3M0</h3>
                             <p>I had taken the TMR3M0 Robotics course and finished with a 94%, in this course I was able to create various robots. My favourite Robot was a claw robot I had created with the purpose of picking up cones to place on a pole.</p>
@@ -195,7 +201,7 @@
                         <img src="calc.png" alt="ss of calc">
                         <div class="project-info">
                             <h3>The Boring Calculator</h3>
-                            <p>This project was created to be used as a chrome extension calculator for homework that met the expectations set by the university of my client in their Calculus program. It was made to be used to do homework as my client did not wish to constantly carry a calculator around but wished to have experience with a non-scientific calculator to prepare for tests.</p>
+                            <p>This project was created to be used as a chrome extension calculator for homework that met the expectations set by the university of my client in their Calculus program. It was made to be used to do homework as my client did not wish to constantly carry a caculator around but wished to have experience with a non-scientific calculator to prepare for tests.</p>
                         </div>
                     </div>
                     <div class="project">
@@ -233,14 +239,14 @@
                         <img src="img7.PNG" alt="Martial Arts">
                         <div class="project-info">
                             <h3>Wrestling</h3>
-                            <p>In highschool I enjoyed wrestling. It was both a physically and mentally demanding sport. It required an individual to think on the spot while also being athletic enough to carry out whatever plans were previously conceived.</p>
+                            <p>In highschool I enjoyed wrestling. It was both a phyiscally and mentally demanding sport. It required an individual to think on the spot while also being athletic enough to carry out whatever plans were previously conceived.</p>
                         </div>
                     </div>
                     <div class="project">
                         <img src="img8.jpg" alt="criket essay">
                         <div class="project-info">
                             <h3>Literature</h3>
-                            <p>Literature has always held a deep place in my heart. In grade 11 I received an Honourable Mention Distinction in from OSCA for an essay pertaining to Cricket and The Crown. Currently, I continue to write poetry and essays regarding my passions when possible.</p>
+                            <p>Literature has always held a deep place in my heart. In grade 11 I recieved an Honourable Mention Distinction in from OSCA for an essay pertaining to Cricket and The Crown. Currently, I continue to write poetry and essays regarding my passions when possible.</p>
                         </div>
                     </div>
                 </div>
@@ -271,7 +277,7 @@
                         <img src="img10.jpg" alt="sauga">
                         <div class="project-info">
                             <h3>City Of Mississauga Volunteer (2022-2022)</h3>
-                            <p>In 2022 I had volunteered for the city of Mississauga as a VIP volunteer on two occasions (Canada day & Reconciliation  Day), where I guided guests to different areas and assisted with refreshments along with backstage support.</p>
+                            <p>In 2022 I had volunteered for the city of Mississauga as a VIP volunteer on two occasions (Canada day & Reconcilliation Day), where I guided guests to different areas and assisted with refreshments along with backstage support.</p>
                         </div>
                     </div>
                 </div>      
