@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Me - Ayush Parekh</title>
+  <style>
+    body {
+      background-color: #c0c0c0;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      color: black;
+    }
+
+    .content-wrapper {
+      width: 90%;
+      margin: 0 auto;
+      background-color: white;
+      border: 2px solid #000080;
+      padding: 20px;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    h1 {
+      text-align: center;
+      color: #000080;
+      border-bottom: 2px dotted #000080;
+      padding-bottom: 10px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    p {
+      text-align: center;
+      font-size: 16px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .contact-icons {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    .contact-icons a,
+    .contact-icons button {
+      text-decoration: none;
+      text-align: center;
+      color: black;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .contact-icons img {
+      width: 64px;
+      height: 64px;
+      border: 2px solid #000080;
+      padding: 4px;
+      background-color: #f0f0f0;
+      margin-bottom: 8px;
+    }
+
+    .contact-icons span {
+      display: block;
+      margin-top: 4px;
+      font-size: 14px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .copy-popup {
+      display: none;
+      text-align: center;
+      margin-top: 15px;
+      font-size: 14px;
+      color: green;
+      font-family: 'Courier New', Courier, monospace;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="content-wrapper">
+    <h1>Contact Me</h1>
+
+    <p>Here are my contacts below:</p>
+
+    <div class="contact-icons">
+      <!-- Gmail Copy Feature -->
+      <button onclick="copyEmail()">
+        <img src="gmail.webp" alt="Gmail Icon" />
+        <span>Copy Email</span>
+      </button>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/ayush-parekh-314b932b8/" target="_blank">
+        <img src="contact-me.png" alt="LinkedIn Icon" />
+        <span>LinkedIn</span>
+      </a>
+    </div>
+
+    <div id="popup" class="copy-popup">📋 Email copied to clipboard!</div>
+  </div>
+
+  <script>
+    function copyEmail() {
+      const email = "ayushparekh2022@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        const popup = document.getElementById("popup");
+        popup.style.display = "block";
+        setTimeout(() => popup.style.display = "none", 2000);
+      });
+    }
+  </script>
+
+</body>
+</html>

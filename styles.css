@@ -1,0 +1,253 @@
+
+body{
+
+    margin: 0;
+    background:url(windows7.jpg) no-repeat center center fixed; 
+    background-size: cover;
+    font-family: Tahoma, sans-serif; 
+
+}
+
+.windows-bar {
+ position: fixed;
+ bottom: 0;
+ left: 0;
+ height: 40px;
+ width: 100%;
+ background-color: rgba(28, 28, 28, 0.7);
+ display: flex;
+ align-items:center;
+ padding: 0 10px;
+ box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.windows-bar .item img {
+  height: 30px; 
+  width: auto;
+  cursor: pointer;
+}
+
+.start-menu {
+  position: fixed;
+  bottom: 40px;
+  left: 0;
+  width: 200px;
+  background-color: rgba(11, 129, 202, .5);
+  color: rgb(249, 249, 249);
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px #000;
+  display: none;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+  z-index: 10; /* Add this */
+}
+
+
+.start-menu.show {
+  display: block;
+}
+
+.start-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+
+
+.start-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 17px;
+  background-color: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid transparent; 
+  color: #ffffff;
+  font-size: 14px;
+  width: 100%;
+  cursor: pointer;
+  transition:
+  background-color 0.2s ease,
+  transform 0.2s ease,
+  border-color 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); 
+
+}
+
+.start-menu.show img{
+  height: 50px;     
+  width: 50px;      
+  cursor: pointer;
+  object-fit: cover; 
+
+}
+
+.start-sidebar {
+  display: flex;
+  align-items: center;  
+  gap: 10px;             
+  padding: 10px;
+  color: white;        
+}
+
+.start-item img {
+  width: 24px;
+  height: 24px;
+
+}
+
+.start-item:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.6); 
+}
+.desktop-icons {
+  position: fixed; 
+  top: 25px;       
+  left: 25px;
+  display: flex;
+  gap: 25px;       
+  z-index: 0;      
+  flex-direction: row;
+  background: transparent;
+  border: none;
+
+
+
+}
+
+.desktop-icons .start-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 12px;
+  width: 80px;           
+  height: 80px;           
+  padding: 17px;
+  box-sizing: border-box;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.9); 
+
+ 
+}
+
+.desktop-icons .start-item img {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
+  background: none;
+  border: none;
+
+}
+
+.desktop-icons .start-item:hover {
+ background-color: rgba(255, 255, 255, 0.25); 
+ border: 1px solid rgba(255, 255, 255, 0.6); 
+ box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);}
+
+
+
+
+.window {
+  position: fixed;
+  top: 80px;
+  left: 80px;
+  width: 800px;
+  height: 600px;
+  background: white;
+  border: 1px solid #0078d7;
+  box-shadow: 0 0 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  z-index: 9999;
+  border-radius: 4px;
+  user-select: none;
+  transition: background-color 0.2s ease;
+
+}
+
+.hidden {
+  display: none;
+}
+
+.window-titlebar {
+  background: linear-gradient(to bottom, #0078d7, #005a9e);
+  color: white;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+  cursor: grab;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+
+.window-titlebar:active {
+  cursor: grabbing;
+}
+
+.window-title {
+  font-weight: bold;
+  font-size: 14px;
+  user-select: none;
+}
+
+.window-controls button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  margin-left: 4px;
+}
+
+.window-controls button:hover {
+  background: rgba(239, 233, 233, 0.3);
+  border-radius: 2px;
+}
+
+.window-content {
+  flex-grow: 1;
+  border: none;
+  width: 100%;
+  height: 100%;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  transition: background-color 0.2s ease;
+
+}
+.resize-handle {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  bottom: 0;
+  right: 0;
+  cursor: nwse-resize;
+  background: linear-gradient(45deg, transparent 50%, rgba(0,0,0,0.3) 50%);
+  z-index: 10000;
+}
+
+
+
+.window-titlebar {
+  cursor: grab;
+}
+
+.window-titlebar.dragging {
+  cursor: grabbing !important;
+}

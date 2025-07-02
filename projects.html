@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>My Projects</title>
+  <style>
+    body {
+      background-color: #c0c0c0;
+      font-family: 'Courier New', Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      color: black;
+    }
+
+    .content-wrapper {
+      width: 90%;
+      margin: 0 auto;
+      background-color: white;
+      border: 2px solid #000080;
+      padding: 20px;
+      box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      color: #000080;
+      border-bottom: 2px dotted #000080;
+      padding-bottom: 10px;
+    }
+
+    .section {
+      margin-bottom: 40px;
+    }
+
+    .section h2 {
+      background-color: #000080;
+      color: white;
+      padding: 5px 10px;
+    }
+
+    .section p {
+      padding: 10px;
+      line-height: 1.6;
+    }
+
+    .images {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+      justify-content: space-between;
+    }
+
+    .images img {
+      width: 48%;
+      height: auto;
+      border: 2px solid #000080;
+    }
+
+    /* NEW: Full-width image style */
+    .image {
+      padding: 10px;
+    }
+
+    .image img {
+      width: 100%;
+      height: auto;
+      border: 2px solid #000080;
+      display: block;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="content-wrapper">
+    <h1>Projects</h1>
+
+    <div class="section" id="camera">
+      <h2>Digital Camera</h2>
+      <p>
+        I created my own digital camera using a webcam, battery pack, keypad, and a Raspberry Pi 3B+. I used fswebcam and a plethora of libraries in order to create a script that allows me to create a functional digital camera with a retro pixelated mode, outdoors mode, and normal mode. I control the camera's interface with the keypad and use the flash on top of the webcam to determine when the process of taking a photo has been completed. I power the camera with a battery pack I had found inside of my house. The python script runs off of boot by creating a systemd service file.
+      </p>
+      <div class="images">
+        <img src="camera.png" alt="Digital Camera 1" />
+        <img src="p2_Original.JPG" alt="Digital Camera 2" />
+      </div>
+    </div>
+
+    <div class="section" id="docketing">
+      <h2>Docketing Tool</h2>
+      <p>
+        One of my tasks during my internship was to automate the docketing process. Docketing referred to documenting the time taken per task in the form of an Excel file that is parsed through and a rate of pay per task is determined. For this project, I created a GMail to Microsoft Excel Python script that elevated productivity and reduced workload by 25%. It has three search fields, a gmail account finder, key word finder, and a date range finder. This allowed for precise searching to occur and the specific time periods of docketing to be processed. After the search fields are inputted, the data is parsed and formatted into an Excel document that is downloaded onto the users computer. It has a .exe file and as such there is no set up process. 
+      </p>
+      <div class="images">
+        <img src="parser.png" alt="Docketing Tool Image 1" />
+        <img src="loading.png" alt="Docketing Tool Image 2" />
+      </div>
+    </div>
+
+    <div class="section" id="server">
+      <h2>Home Server</h2>
+      <p>
+        I use an ACE PC T11 mini PC running Ubuntu 24.04.2 LTS in order to run the server which I access through SSH. I have docker and portainer set up. From that, I set up an AD blocker, a VPN, and a Password Manager. I will continue to learn about homelabbing in order to localize as many services as possible. My next addition will be a storage system that will backup the photos I take on my phone to an SSD. I had also set up a home server with a Raspberry Pi 3B+ running Ubuntu 24.04.2 LTS too and which I accessed though SSH. I switched over to a mini PC as I wished to use my Raspberry Pi for my digital camera project.
+      </p>
+      <div class="image">
+        <img src="server.webp" alt="Home Server Image" />
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
