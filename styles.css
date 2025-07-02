@@ -54,6 +54,12 @@ body{
   padding: 10px;
 }
 
+.user-icon {
+  width: 50px;         
+  border-radius: 50%;  
+  object-fit: cover;     
+  border: 2px solid white;
+}
 
 
 .start-item {
