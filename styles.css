@@ -274,4 +274,10 @@ body{
   margin: 0 auto;
 }
 
+.image iframe {
+  border: 2px solid #000080;
+  display: block;
+  margin: 0 auto;
+}
+
 
