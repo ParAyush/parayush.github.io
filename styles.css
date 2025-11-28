@@ -265,3 +265,13 @@ body{
 .window-titlebar.dragging {
   cursor: grabbing !important;
 }
+
+.image video {
+  width: 200px;
+  height: auto;
+  border: 2px solid #000080;
+  display: block;
+  margin: 0 auto;
+}
+
+
