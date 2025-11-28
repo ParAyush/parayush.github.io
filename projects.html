@@ -2,8 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>My Projects</title>
   <style>
+    * , *::before, *::after {
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #c0c0c0;
       font-family: 'Courier New', Courier, monospace;
@@ -13,7 +18,8 @@
     }
 
     .content-wrapper {
-      width: 90%;
+      width: 100%;
+      max-width: 900px;
       margin: 0 auto;
       background-color: white;
       border: 2px solid #000080;
@@ -43,6 +49,19 @@
       line-height: 1.6;
     }
 
+    .section h3 {
+      padding: 0 10px;
+      margin-top: 10px;
+      margin-bottom: 0;
+      font-size: 1rem;
+      color: #000080;
+    }
+
+    .section ul {
+      padding: 0 40px 10px 40px;
+      margin: 0;
+    }
+
     .images {
       display: flex;
       gap: 10px;
@@ -54,19 +73,61 @@
       width: 48%;
       height: auto;
       border: 2px solid #000080;
+      max-width: 100%;
     }
 
     .image {
       padding: 10px;
+      text-align: center;
     }
 
-    .image img, .image video {
+    .image img {
       width: 100%;
       height: auto;
       border: 2px solid #000080;
       display: block;
+      max-width: 100%;
     }
 
+    .image iframe {
+      max-width: 100%;
+      width: 420px;
+      height: 236px;
+      border: 2px solid #000080;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .section h2 {
+        font-size: 1.1rem;
+      }
+
+      .section p {
+        font-size: 0.95rem;
+      }
+
+      .images {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .images img {
+        width: 100%;
+      }
+
+      .image iframe {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+    }
   </style>
 </head>
 <body>
@@ -112,7 +173,7 @@
     <div class="section" id="tetris">
       <h2><center>Handheld Tetris Console</center></h2>
       <p>
-        I built a Tetris handheld video game console using a series of buttons, a live buzzer, a 0.96 inch OLED screen, and a RP2350 USB-A Microcontroller. I programmed the screen and the game logic along with wiring the whole unit. I plan to use a perf board along with a case that I am yet to salvage to adjust the form factor and increase the portability. 
+        I built a miniature handheld Tetris console using a microcontroller, tactile pushbuttons, and a 0.96" OLED display. The entire game runs on embedded C/Python (depending on board), including piece rotation, collision logic, score tracking, and rendering. This project taught me a lot about display protocols, button debouncing, microcontroller timing loops, and writing optimized game logic for small hardware.
       </p>
       <div class="image">
         <img src="Handheld_Tetris.PNG" alt="Handheld Tetris Project" />
@@ -123,23 +184,78 @@
     <div class="section" id="audio-amplifier">
       <h2><center>Audio Amplifier</center></h2>
       <p>
-        My best friend had bought a Vinyl Turntable that did not have a built in potentiometer and used RCA connections. The speakers they had bought used live wire connections and thus the two were incompatible. The alternative of buying an audio amplifier on amazon was incredibly costly. As such, I used the CD player I previously purchased from a thrift store and salvaged the audio amplification circuit board that contained the TEA2025B IC and reused that. I also salvaged the live wire connectors and several potentiometers from the scrap electronics I've previously gathered. I then soldered some connections with the potentiometers and created a single unit. Thus, it was able to function as an audio amplifier. The board also contained a connector for FM and AM radio and as such it also inherited that capability. 
+        I built a small audio amplifier circuit using salvaged components from older consumer electronics. 
+        This project involved understanding amplifier ICs, power filtering, audio signal routing, and 
+        speaker output handling. After prototyping the circuit on a breadboard, I tested it with various 
+        audio sources. The video below demonstrates the amplifier powering a speaker with clean sound.
       </p>
-     <div class="image">
-    <iframe 
-      width="420" 
-      height="236" 
-      src="https://www.youtube.com/embed/oqi2nw2ZVKs" 
-      title="Audio Amplifier Demo"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+      <div class="image">
+        <iframe 
+          width="420" 
+          height="236" 
+          src="https://www.youtube.com/embed/oqi2nw2ZVKs" 
+          title="Audio Amplifier Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- CLEARHEAR -->
+    <div class="section" id="clearhear">
+<h2><center>ClearHear – Accessible Notes From Audio<br>(Hack Western 12 Submission)</center></h2>
+
+      <h3>Inspiration</h3>
+      <p>
+        ClearHear was inspired by the ongoing struggles faced by my best friend who is hard of hearing. 
+        In class, she was unable to sufficiently focus because she had to take notes, read the board, and 
+        read the professor's lips all at once. It was jarring to observe the struggle for something I had 
+        taken for granted to be easy. I wanted to do something about it to address this injustice.
+      </p>
+
+      <h3>What it does</h3>
+      <p>
+        ClearHear takes audio files and outputs raw transcripts along with accessible notes using Gemini AI, 
+        so that students who are hard of hearing or who face other disabilities can learn alongside their peers 
+        without having to juggle multiple invisible tasks just to keep up.
+      </p>
+
+      <h3>How I built it</h3>
+      <p>
+        I built ClearHear as a Streamlit web application using Python and Google Gemini. 
+        Gemini performs transcription, tone indication, quotes from the speaker with timestamps, and structured note generation. 
+        I created a text-based output schema using delimiter markers so that the formatting remains consistent. 
+        The notes are made visually accessible using highlights, boldening, colour-coded tone indicators, and key concept emphasis. 
+        Finally, users can download the output as either a <code>.txt</code> or <code>.docx</code> file.
+      </p>
+
+      <h3>Built With</h3>
+      <ul>
+        <li>Python</li>
+        <li>Streamlit</li>
+        <li>Google Gemini / google-genai</li>
+        <li>Markdown</li>
+        <li>python-docx</li>
+        <li>regex</li>
+        <li>Git &amp; GitHub</li>
+        <li>Virtual environments (venv)</li>
+        <li>Cloud deployment</li>
+      </ul>
+
+      <div class="image">
+        <iframe 
+          width="420" 
+          height="236" 
+          src="https://www.youtube.com/embed/15n16Ud1J2Q"
+          title="ClearHear Demo"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
 
   </div>
 </body>
 </html>
-
-
