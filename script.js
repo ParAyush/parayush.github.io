@@ -99,6 +99,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+    function openApp(appName) {
+    let url = 'about:blank';
+
+    if (appName === 'about') url = 'about.html';
+    else if (appName === 'work') url = 'work.html';
+    else if (appName === 'projects') url = 'projects.html';
+    else if (appName === 'contact') url = 'contact.html';
+
+    if (!url) return;
+
+    // Mark taskbar buttons active
+    document.querySelectorAll('.taskbar-app').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.app === appName);
+    });
+
+    // (Optional) mark start-menu / desktop items active too
+    document.querySelectorAll('.start-item').forEach(item => {
+      const label = item.querySelector('span')?.textContent.toLowerCase() || '';
+      const isMatch =
+        (appName === 'about' && label.includes('about')) ||
+        (appName === 'work' && label.includes('work experience')) ||
+        (appName === 'projects' && label.includes('projects')) ||
+        (appName === 'contact' && label.includes('contact'));
+      item.classList.toggle('active', isMatch);
+    });
+
+    iframe.src = url;
+    ieWindow.classList.remove('hidden');
+    iframe.style.display = 'block';
+
+    ieWindow.style.top = lastPosition.top + 'px';
+    ieWindow.style.left = lastPosition.left + 'px';
+    ieWindow.style.width = lastPosition.width + 'px';
+    ieWindow.style.height = lastPosition.height + 'px';
+    isMaximized = false;
+
+    startMenu.classList.remove('show');
+  }
+
   minimizeBtn.addEventListener('click', () => {
     console.log('Minimize clicked');
     if (ieWindow.classList.contains('hidden')) return;
@@ -167,50 +206,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-closeBtn.addEventListener('click', () => {
-  lastPosition = {
-    top: ieWindow.offsetTop,
-    left: ieWindow.offsetLeft,
-    width: ieWindow.offsetWidth,
-    height: ieWindow.offsetHeight,
-  };
-  ieWindow.classList.add('hidden');
-  iframe.style.display = 'none';
+  closeBtn.addEventListener('click', () => {
+    console.log('Close clicked');
+    ieWindow.classList.add('hidden');
+    iframe.src = '';
 
-  document.querySelectorAll('.start-item.active').forEach(btn => {
-    btn.classList.remove('active');
+    document.querySelectorAll('.taskbar-app, .start-item').forEach(el => {
+      el.classList.remove('active');
+    });
   });
 
-});
 
 
-document.querySelectorAll('.start-item').forEach(button => {
-  button.addEventListener('click', () => {
-    document.querySelectorAll('.start-item').forEach(b => b.classList.remove('active'));
-    button.classList.add('active');
+  document.querySelectorAll('.start-item').forEach(button => {
+    button.addEventListener('click', () => {
+      const label = button.querySelector('span')?.textContent.toLowerCase() || '';
+      let appName = '';
 
-    let url = 'about:blank';
-    const label = button.querySelector('span')?.textContent.toLowerCase() || '';
+      if (label.includes('about')) appName = 'about';
+      else if (label.includes('work experience')) appName = 'work';
+      else if (label.includes('projects')) appName = 'projects';
+      else if (label.includes('contact')) appName = 'contact';
 
-    if (label.includes('about me')) url = 'about.html';
-    else if (label.includes('work experience')) url = 'work.html';
-    else if (label.includes('projects')) url = 'projects.html';
-    else if (label.includes('contact me')) url = 'contact.html';
-
-    iframe.src = url;
-    ieWindow.classList.remove('hidden');
-    iframe.style.display = 'block';
-
-    ieWindow.style.top = lastPosition.top + 'px';
-    ieWindow.style.left = lastPosition.left + 'px';
-    ieWindow.style.width = lastPosition.width + 'px';
-    ieWindow.style.height = lastPosition.height + 'px';
-
-    isMaximized = false;
-
-    startMenu.classList.remove('show');
+      if (appName) openApp(appName);
+    });
   });
-});
+
+  document.querySelectorAll('.taskbar-app').forEach(button => {
+    button.addEventListener('click', () => {
+      const appName = button.dataset.app;
+      if (appName) openApp(appName);
+    });
+  });
 
 
   startButton.addEventListener('click', () => {
