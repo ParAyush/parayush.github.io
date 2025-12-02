@@ -167,36 +167,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  closeBtn.addEventListener('click', () => {
-    console.log('Close clicked');
-    ieWindow.classList.add('hidden');
-    iframe.src = '';
+closeBtn.addEventListener('click', () => {
+  lastPosition = {
+    top: ieWindow.offsetTop,
+    left: ieWindow.offsetLeft,
+    width: ieWindow.offsetWidth,
+    height: ieWindow.offsetHeight,
+  };
+  ieWindow.classList.add('hidden');
+  iframe.style.display = 'none';
+
+  document.querySelectorAll('.start-item.active').forEach(btn => {
+    btn.classList.remove('active');
   });
 
-  document.querySelectorAll('.start-item').forEach(button => {
-    button.addEventListener('click', () => {
-      let url = 'about:blank';
-      const label = button.querySelector('span')?.textContent.toLowerCase() || '';
+});
 
-      if (label.includes('about me')) url = 'about.html';
-      else if (label.includes('work experience')) url = 'work.html';
-      else if (label.includes('projects')) url = 'projects.html';
-      else if (label.includes('contact me')) url = 'contact.html';
 
-      iframe.src = url;
-      ieWindow.classList.remove('hidden');
-      iframe.style.display = 'block';
+document.querySelectorAll('.start-item').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.start-item').forEach(b => b.classList.remove('active'));
+    button.classList.add('active');
 
-      ieWindow.style.top = lastPosition.top + 'px';
-      ieWindow.style.left = lastPosition.left + 'px';
-      ieWindow.style.width = lastPosition.width + 'px';
-      ieWindow.style.height = lastPosition.height + 'px';
+    let url = 'about:blank';
+    const label = button.querySelector('span')?.textContent.toLowerCase() || '';
 
-      isMaximized = false;
+    if (label.includes('about me')) url = 'about.html';
+    else if (label.includes('work experience')) url = 'work.html';
+    else if (label.includes('projects')) url = 'projects.html';
+    else if (label.includes('contact me')) url = 'contact.html';
 
-      startMenu.classList.remove('show');
-    });
+    iframe.src = url;
+    ieWindow.classList.remove('hidden');
+    iframe.style.display = 'block';
+
+    ieWindow.style.top = lastPosition.top + 'px';
+    ieWindow.style.left = lastPosition.left + 'px';
+    ieWindow.style.width = lastPosition.width + 'px';
+    ieWindow.style.height = lastPosition.height + 'px';
+
+    isMaximized = false;
+
+    startMenu.classList.remove('show');
   });
+});
+
 
   startButton.addEventListener('click', () => {
     startMenu.classList.toggle('show');
