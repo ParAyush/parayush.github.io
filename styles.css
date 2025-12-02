@@ -284,6 +284,49 @@ body{
   text-align: center;
 }
 
+/*  Mobile */
+@media (max-width: 768px) {
+  #ie-window {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: calc(100vh - 40px) !important; 
+  }
+
+  #ie-window .window-titlebar {
+    height: 40px;
+    padding: 0 8px;
+  }
+
+  #ie-window .window-content {
+    height: calc(100% - 40px);
+  }
+
+  .desktop-icons {
+    top: 60px;
+    left: 10px;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .desktop-icons .start-item {
+    width: 80px;
+    height: auto;
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .start-menu {
+    width: 70%;
+    max-width: 260px;
+    bottom: 40px;                     
+    max-height: calc(100vh - 80px);  
+    overflow-y: auto;
+  }
+}
+
+
+
 
 
 
