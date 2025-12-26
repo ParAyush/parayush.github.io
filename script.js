@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  startButton.addEventListener('click', () => {
+   startButton.addEventListener('click', () => {
     startMenu.classList.toggle('show');
   });
 
@@ -249,4 +249,7 @@ document.addEventListener('DOMContentLoaded', () => {
       startMenu.classList.remove('show');
     }
   });
+
+  // Open About Me by default on first load
+  openApp("about");
 });
