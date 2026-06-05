@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  console.log('script.js loaded');
-
   const ieWindow = document.getElementById('ie-window');
   const titleBar = ieWindow.querySelector('.window-titlebar');
   const resizeHandle = ieWindow.querySelector('.resize-handle');
@@ -8,24 +6,64 @@ document.addEventListener('DOMContentLoaded', () => {
   const maximizeBtn = ieWindow.querySelector('.maximize-btn');
   const closeBtn = ieWindow.querySelector('.close-btn');
   const iframe = ieWindow.querySelector('.window-content');
+  const winTitleText = document.getElementById('window-title-text');
+  const winIcon = document.getElementById('window-icon');
 
   const startButton = document.getElementById('start-button');
   const startMenu = document.getElementById('start-menu');
 
-  let isDragging = false;
-  let dragOffsetX = 0;
-  let dragOffsetY = 0;
-
-  let isResizing = false;
-
-  let isMaximized = false;
-
-  let lastPosition = {
-    top: 80,
-    left: 80,
-    width: 800,
-    height: 600,
+  const APPS = {
+    about:    { url: 'about.html',    title: 'About Me',        icon: 'about.webp' },
+    work:     { url: 'work.html',     title: 'Work Experience', icon: 'proj.webp' },
+    projects: { url: 'projects.html', title: 'Projects',        icon: 'work.png' },
+    contact:  { url: 'contact.html',  title: 'Contact Me',      icon: 'linkedin.png' },
   };
+
+  let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+  let isResizing = false;
+  let isMaximized = false;
+  let normalGeo = { top: 80, left: 120, width: 800, height: 600 };
+
+  function applyGeo(g) {
+    ieWindow.style.top = g.top + 'px';
+    ieWindow.style.left = g.left + 'px';
+    ieWindow.style.width = g.width + 'px';
+    ieWindow.style.height = g.height + 'px';
+  }
+
+  function readGeo() {
+    return {
+      top: ieWindow.offsetTop,
+      left: ieWindow.offsetLeft,
+      width: ieWindow.offsetWidth,
+      height: ieWindow.offsetHeight,
+    };
+  }
+
+  function maximizeWindow() {
+    normalGeo = readGeo();
+    ieWindow.style.top = '0px';
+    ieWindow.style.left = '0px';
+    ieWindow.style.width = window.innerWidth + 'px';
+    ieWindow.style.height = (window.innerHeight - 48) + 'px';
+    isMaximized = true;
+    ieWindow.classList.add('maximized');
+    maximizeBtn.innerHTML = '&#10064;';
+    maximizeBtn.title = 'Restore';
+  }
+
+  function restoreWindow() {
+    applyGeo(normalGeo);
+    isMaximized = false;
+    ieWindow.classList.remove('maximized');
+    maximizeBtn.innerHTML = '&#9633;';
+    maximizeBtn.title = 'Maximize';
+  }
+
+  function toggleMaximize() {
+    if (isMaximized) restoreWindow();
+    else maximizeWindow();
+  }
 
   titleBar.addEventListener('pointerdown', (e) => {
     if (e.target.closest('.window-controls button')) return;
@@ -51,8 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
   titleBar.addEventListener('pointerup', (e) => {
     if (!isDragging) return;
     isDragging = false;
-    lastPosition.top = ieWindow.offsetTop;
-    lastPosition.left = ieWindow.offsetLeft;
+    normalGeo = readGeo();
     titleBar.classList.remove('dragging');
     titleBar.releasePointerCapture(e.pointerId);
   });
@@ -60,6 +97,11 @@ document.addEventListener('DOMContentLoaded', () => {
   titleBar.addEventListener('lostpointercapture', () => {
     isDragging = false;
     titleBar.classList.remove('dragging');
+  });
+
+  titleBar.addEventListener('dblclick', (e) => {
+    if (e.target.closest('.window-controls button')) return;
+    toggleMaximize();
   });
 
   resizeHandle.addEventListener('pointerdown', (e) => {
@@ -73,12 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeHandle.addEventListener('pointermove', (e) => {
     if (!isResizing) return;
     const rect = ieWindow.getBoundingClientRect();
-    const minWidth = 300;
-    const minHeight = 200;
-    let newWidth = e.clientX - rect.left;
-    let newHeight = e.clientY - rect.top;
-    newWidth = Math.min(Math.max(newWidth, minWidth), window.innerWidth - rect.left);
-    newHeight = Math.min(Math.max(newHeight, minHeight), window.innerHeight - rect.top);
+    let newWidth = Math.min(Math.max(e.clientX - rect.left, 300), window.innerWidth - rect.left);
+    let newHeight = Math.min(Math.max(e.clientY - rect.top, 200), window.innerHeight - rect.top);
     ieWindow.style.width = newWidth + 'px';
     ieWindow.style.height = newHeight + 'px';
   });
@@ -86,161 +124,101 @@ document.addEventListener('DOMContentLoaded', () => {
   resizeHandle.addEventListener('pointerup', (e) => {
     if (!isResizing) return;
     isResizing = false;
-    lastPosition.width = ieWindow.offsetWidth;
-    lastPosition.height = ieWindow.offsetHeight;
+    normalGeo = readGeo();
     resizeHandle.releasePointerCapture(e.pointerId);
     document.body.style.userSelect = 'auto';
   });
 
   resizeHandle.addEventListener('lostpointercapture', () => {
-    if (isResizing) {
-      isResizing = false;
-      document.body.style.userSelect = 'auto';
-    }
+    if (isResizing) { isResizing = false; document.body.style.userSelect = 'auto'; }
   });
 
-    function openApp(appName) {
-    let url = 'about:blank';
+  function openApp(appName) {
+    const app = APPS[appName];
+    if (!app) return;
 
-    if (appName === 'about') url = 'about.html';
-    else if (appName === 'work') url = 'work.html';
-    else if (appName === 'projects') url = 'projects.html';
-    else if (appName === 'contact') url = 'contact.html';
-
-    if (!url) return;
-
-    // Mark taskbar buttons active
     document.querySelectorAll('.taskbar-app').forEach(btn => {
       btn.classList.toggle('active', btn.dataset.app === appName);
     });
-
-    // (Optional) mark start-menu / desktop items active too
     document.querySelectorAll('.start-item').forEach(item => {
-      const label = item.querySelector('span')?.textContent.toLowerCase() || '';
-      const isMatch =
-        (appName === 'about' && label.includes('about')) ||
-        (appName === 'work' && label.includes('work experience')) ||
-        (appName === 'projects' && label.includes('projects')) ||
-        (appName === 'contact' && label.includes('contact'));
-      item.classList.toggle('active', isMatch);
+      item.classList.toggle('active', item.dataset.app === appName);
     });
 
-    iframe.src = url;
+    winTitleText.textContent = app.title;
+    winIcon.src = app.icon;
+    iframe.src = app.url;
+
     ieWindow.classList.remove('hidden');
     iframe.style.display = 'block';
 
-    ieWindow.style.top = lastPosition.top + 'px';
-    ieWindow.style.left = lastPosition.left + 'px';
-    ieWindow.style.width = lastPosition.width + 'px';
-    ieWindow.style.height = lastPosition.height + 'px';
-    isMaximized = false;
+    if (!isMaximized) applyGeo(normalGeo);
+
+    const ti = document.getElementById('taskbar-ie-icon');
+    if (ti) ti.remove();
+
+    ieWindow.classList.remove('closing', 'minimizing', 'opening');
+    void ieWindow.offsetWidth;
+    ieWindow.classList.add('opening');
 
     startMenu.classList.remove('show');
   }
 
   minimizeBtn.addEventListener('click', () => {
-    console.log('Minimize clicked');
     if (ieWindow.classList.contains('hidden')) return;
-    lastPosition = {
-      top: ieWindow.offsetTop,
-      left: ieWindow.offsetLeft,
-      width: ieWindow.offsetWidth,
-      height: ieWindow.offsetHeight,
-    };
-    ieWindow.classList.add('hidden');
-    iframe.style.display = 'none';
+    if (!isMaximized) normalGeo = readGeo();
+    ieWindow.classList.remove('opening');
+    ieWindow.classList.add('minimizing');
+    setTimeout(() => {
+      ieWindow.classList.add('hidden');
+      ieWindow.classList.remove('minimizing');
+      iframe.style.display = 'none';
+    }, 200);
 
     if (!document.getElementById('taskbar-ie-icon')) {
-      const taskbar = document.querySelector('.windows-bar');
+      const taskbar = document.querySelector('.taskbar-apps');
       const icon = document.createElement('button');
       icon.id = 'taskbar-ie-icon';
-      icon.textContent = 'IE';
-      icon.style.cssText = `
-        background: rgba(255, 255, 255, 0.15);
-        border: none;
-        color: white;
-        font-weight: bold;
-        padding: 6px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        user-select: none;
-        margin-left: 5px;
-        transition: background-color 0.2s ease;
-      `;
+      icon.className = 'taskbar-app active';
+      icon.innerHTML = '<img src="' + winIcon.src + '" alt=""><span class="taskbar-label">' + winTitleText.textContent + '</span>';
       icon.addEventListener('click', () => {
         ieWindow.classList.remove('hidden');
         iframe.style.display = 'block';
-        ieWindow.style.top = lastPosition.top + 'px';
-        ieWindow.style.left = lastPosition.left + 'px';
-        ieWindow.style.width = lastPosition.width + 'px';
-        ieWindow.style.height = lastPosition.height + 'px';
-        isMaximized = false;
+        if (!isMaximized) applyGeo(normalGeo);
+        ieWindow.classList.remove('closing', 'minimizing');
+        void ieWindow.offsetWidth;
+        ieWindow.classList.add('opening');
         icon.remove();
       });
       taskbar.appendChild(icon);
     }
   });
 
-  maximizeBtn.addEventListener('click', () => {
-    console.log('Maximize clicked');
-    if (!isMaximized) {
-      lastPosition = {
-        top: ieWindow.offsetTop,
-        left: ieWindow.offsetLeft,
-        width: ieWindow.offsetWidth,
-        height: ieWindow.offsetHeight,
-      };
-      ieWindow.style.top = '0';
-      ieWindow.style.left = '0';
-      ieWindow.style.width = '100vw';
-      ieWindow.style.height = '100vh';
-      iframe.style.display = 'block';
-      isMaximized = true;
-    } else {
-      ieWindow.style.top = lastPosition.top + 'px';
-      ieWindow.style.left = lastPosition.left + 'px';
-      ieWindow.style.width = lastPosition.width + 'px';
-      ieWindow.style.height = lastPosition.height + 'px';
-      iframe.style.display = 'block';
-      isMaximized = false;
-    }
-  });
+  maximizeBtn.addEventListener('click', toggleMaximize);
 
   closeBtn.addEventListener('click', () => {
-    console.log('Close clicked');
-    ieWindow.classList.add('hidden');
-    iframe.src = '';
-
-    document.querySelectorAll('.taskbar-app, .start-item').forEach(el => {
-      el.classList.remove('active');
-    });
+    ieWindow.classList.remove('opening');
+    ieWindow.classList.add('closing');
+    setTimeout(() => {
+      ieWindow.classList.add('hidden');
+      ieWindow.classList.remove('closing');
+      iframe.removeAttribute('src');
+      if (isMaximized) restoreWindow();
+    }, 160);
+    const ti = document.getElementById('taskbar-ie-icon');
+    if (ti) ti.remove();
+    document.querySelectorAll('.taskbar-app, .start-item').forEach(el => el.classList.remove('active'));
   });
 
-
-
-  document.querySelectorAll('.start-item').forEach(button => {
-    button.addEventListener('click', () => {
-      const label = button.querySelector('span')?.textContent.toLowerCase() || '';
-      let appName = '';
-
-      if (label.includes('about')) appName = 'about';
-      else if (label.includes('work experience')) appName = 'work';
-      else if (label.includes('projects')) appName = 'projects';
-      else if (label.includes('contact')) appName = 'contact';
-
+  document.querySelectorAll('[data-app]').forEach(el => {
+    if (el.id === 'start-button') return;
+    el.addEventListener('click', () => {
+      const appName = el.dataset.app;
       if (appName) openApp(appName);
     });
   });
 
-  document.querySelectorAll('.taskbar-app').forEach(button => {
-    button.addEventListener('click', () => {
-      const appName = button.dataset.app;
-      if (appName) openApp(appName);
-    });
-  });
-
-
-   startButton.addEventListener('click', () => {
+  startButton.addEventListener('click', (e) => {
+    e.stopPropagation();
     startMenu.classList.toggle('show');
   });
 
@@ -250,6 +228,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Open About Me by default on first load
-  openApp("about");
+  document.getElementById('show-desktop').addEventListener('click', () => {
+    if (!ieWindow.classList.contains('hidden')) minimizeBtn.click();
+  });
+
+  const clockTime = document.getElementById('clock-time');
+  const clockDate = document.getElementById('clock-date');
+  function tick() {
+    const now = new Date();
+    let h = now.getHours();
+    const m = now.getMinutes().toString().padStart(2, '0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    h = h % 12; if (h === 0) h = 12;
+    clockTime.textContent = h + ':' + m + ' ' + ampm;
+    const mm = (now.getMonth() + 1).toString().padStart(2, '0');
+    const dd = now.getDate().toString().padStart(2, '0');
+    clockDate.textContent = mm + '/' + dd + '/' + now.getFullYear();
+  }
+  tick();
+  setInterval(tick, 1000);
 });
