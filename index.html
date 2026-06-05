@@ -1,106 +1,124 @@
 <!DOCTYPE html>
-<html>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet">
-
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ayush Parekh</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+<body>
 
-<div class="windows-bar">
-  <a class="item" id="start-button">
-    <img src="windows_icon.webp" alt="Windows Button">
-  </a>
-
-  <div class="taskbar-apps">
-    <button class="taskbar-app" data-app="about" title="About">
-      <img src="about.webp" alt="About">
-    </button>
-    <button class="taskbar-app" data-app="work" title="Work Experience">
-      <img src="proj.webp" alt="Work Experience">
-    </button>
-    <button class="taskbar-app" data-app="projects" title="Projects">
-      <img src="work.png" alt="Projects">
-    </button>
-    <button class="taskbar-app" data-app="contact" title="Contact">
-      <img src="linkedin.png" alt="Contact">
-    </button>
-  </div>
-</div>
-
-
-<div id="start-menu" class="unclicked start-menu">
-  <div class="start-sidebar">
-    <a href="https://www.linkedin.com/in/ayush-parekh-314b932b8/" target="_blank" title="View my LinkedIn">
-      <img src="ayush.jpg" alt="User" class="user-icon" />
-    </a>
-    <span>Ayush Parekh</span>
-  </div>
-
-  <div class="start-content">
-    <button class="start-item">
-      <img src="about.webp" />
+  <div id="desktop-icons" class="desktop-icons">
+    <button class="start-item" data-app="about">
+      <img src="about.webp" alt="About Me" />
       <span>About Me</span>
     </button>
 
-    <button class="start-item">
-      <img src="proj.webp" />
+    <button class="start-item" data-app="work">
+      <img src="proj.webp" alt="Work Experience" />
       <span>Work Experience</span>
     </button>
 
-    <button class="start-item">
-      <img src="work.png" />
+    <button class="start-item" data-app="projects">
+      <img src="work.png" alt="Projects" />
       <span>Projects</span>
     </button>
 
-    <button class="start-item">
-      <img src="linkedin.png" />
+    <button class="start-item" data-app="contact">
+      <img src="linkedin.png" alt="Contact Me" />
       <span>Contact Me</span>
     </button>
   </div>
-</div>
 
-<div id="desktop-icons" class="desktop-icons">
-  <button class="start-item">
-    <img src="about.webp" />
-    <span>About Me</span>
-  </button>
+  <div id="ie-window" class="window hidden" style="top:80px; left:120px; width:800px; height:600px;">
+    <div class="window-titlebar">
+      <div class="window-title">
+        <img id="window-icon" src="about.webp" alt="" />
+        <span id="window-title-text">Internet Explorer</span>
+      </div>
+      <div class="window-controls">
+        <button class="minimize-btn" title="Minimize">&#8211;</button>
+        <button class="maximize-btn" title="Maximize">&#9633;</button>
+        <button class="close-btn" title="Close">&#215;</button>
+      </div>
+    </div>
+    <iframe class="window-content" src="about:blank"></iframe>
+    <div class="resize-handle"></div>
+  </div>
 
-  <button class="start-item">
-    <img src="proj.webp" />
-    <span>Work Experience</span>
-  </button>
+  <div id="start-menu" class="unclicked start-menu">
+    <div class="start-content">
+      <button class="start-item" data-app="about">
+        <img src="about.webp" />
+        <span>About Me</span>
+      </button>
+      <button class="start-item" data-app="work">
+        <img src="proj.webp" />
+        <span>Work Experience</span>
+      </button>
+      <button class="start-item" data-app="projects">
+        <img src="work.png" />
+        <span>Projects</span>
+      </button>
+      <button class="start-item" data-app="contact">
+        <img src="linkedin.png" />
+        <span>Contact Me</span>
+      </button>
 
-  <button class="start-item">
-    <img src="work.png" />
-    <span>Projects</span>
-  </button>
+      <div class="start-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="2">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21" stroke-linecap="round"/>
+        </svg>
+        <input type="text" placeholder="Search programs and files" />
+      </div>
+    </div>
 
-  <button class="start-item">
-    <img src="linkedin.png" />
-    <span>Contact Me</span>
-  </button>
-</div>
-
-<div id="ie-window" class="window hidden" style="top:80px; left:80px; width:800px; height:600px;">
-  <div class="window-titlebar">
-    <div class="window-title">Internet Explorer</div>
-    <div class="window-controls">
-     <button class="minimize-btn">-</button>
-<button class="maximize-btn">▢</button>
-<button class="close-btn">×</button>
-
+    <div class="start-sidebar">
+      <a href="https://www.linkedin.com/in/ayush-parekh-314b932b8/" target="_blank" title="View my LinkedIn">
+        <img src="ayush.jpg" alt="User" class="user-icon" />
+      </a>
+      <span>Ayush Parekh</span>
+      <a class="side-link" data-app="about">About Me</a>
+      <a class="side-link" data-app="work">Work</a>
+      <a class="side-link" data-app="projects">Projects</a>
+      <a class="side-link" data-app="contact">Contact</a>
     </div>
   </div>
-  <iframe class="window-content" src="about:blank"></iframe>
-  <div class="resize-handle"></div>
-</div>
 
+  <div class="windows-bar">
+    <a class="item" id="start-button" title="Start">
+      <img src="windows_icon.webp" alt="Start">
+    </a>
 
+    <div class="taskbar-apps">
+      <button class="taskbar-app" data-app="about" title="About Me">
+        <img src="about.webp" alt="About">
+      </button>
+      <button class="taskbar-app" data-app="work" title="Work Experience">
+        <img src="proj.webp" alt="Work Experience">
+      </button>
+      <button class="taskbar-app" data-app="projects" title="Projects">
+        <img src="work.png" alt="Projects">
+      </button>
+      <button class="taskbar-app" data-app="contact" title="Contact">
+        <img src="linkedin.png" alt="Contact">
+      </button>
+    </div>
 
+    <div class="system-tray">
+      <div class="tray-icons">
+        <svg viewBox="0 0 24 24" fill="#dff1ff"><path d="M2 8c6-5 14-5 20 0l-2 2c-5-4-11-4-16 0z" opacity=".5"/><path d="M5 12c4-3.4 10-3.4 14 0l-2 2c-3-2.4-7-2.4-10 0z" opacity=".8"/><path d="M9 16c2-1.6 4-1.6 6 0l-3 3z"/></svg>
+        <svg viewBox="0 0 24 24" fill="#dff1ff"><path d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8c2 2 2 6 0 8" fill="none" stroke="#dff1ff" stroke-width="2" stroke-linecap="round"/><path d="M18.5 5.5c3.5 3.5 3.5 9.5 0 13" fill="none" stroke="#dff1ff" stroke-width="2" stroke-linecap="round"/></svg>
+        <svg viewBox="0 0 24 24" fill="#9fe0a0" stroke="#2f9b54" stroke-width="1"><rect x="3" y="8" width="16" height="9" rx="2"/><rect x="19" y="11" width="2.5" height="3" rx="1"/></svg>
+      </div>
+      <div class="tray-clock" id="tray-clock" title="Date and time">
+        <span class="clock-time" id="clock-time">--:--</span>
+        <span class="clock-date" id="clock-date">--/--/----</span>
+      </div>
+      <div class="show-desktop" id="show-desktop" title="Show desktop"></div>
+    </div>
+  </div>
 
-    <script src ="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
-
